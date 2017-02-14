@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProductTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="prodclass">
+          <Key>
+            <PropertyRef Name="p_classid" />
+          </Key>
+          <Property Name="p_classid" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="p_classname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="p_display" Type="bit" />
+          <Property Name="p_playseq" Type="int" />
+          <Property Name="p_status" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="p_prodid" />
+          </Key>
+          <Property Name="p_prodid" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="p_prodname" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="p_classid" Type="nvarchar" MaxLength="10" />
+          <Property Name="p_status" Type="bit" />
+          <Property Name="p_display" Type="bit" />
+          <Property Name="p_onshaffdateb" Type="nvarchar" MaxLength="10" />
+          <Property Name="p_onshaffdaten" Type="nvarchar" MaxLength="10" />
+          <Property Name="p_playseq" Type="int" />
+          <Property Name="p_packagetext" Type="nvarchar" MaxLength="100" />
+          <Property Name="p_functiontext" Type="nvarchar" MaxLength="100" />
+          <Property Name="p_price" Type="decimal" Precision="30" Scale="6" />
+        </EntityType>
+        <EntityType Name="sys_code">
+          <Key>
+            <PropertyRef Name="s_name" />
+            <PropertyRef Name="s_code" />
+          </Key>
+          <Property Name="s_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="s_code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="s_desc" Type="nvarchar" MaxLength="60" />
+          <Property Name="s_memo" Type="nvarchar" MaxLength="60" />
+        </EntityType>
+        <EntityContainer Name="ProductTestModelStoreContainer">
+          <EntitySet Name="prodclass" EntityType="Self.prodclass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_code" EntityType="Self.sys_code" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProductTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="prodclass">
+          <Key>
+            <PropertyRef Name="p_classid" />
+          </Key>
+          <Property Name="p_classid" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="p_classname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="p_display" Type="Boolean" />
+          <Property Name="p_playseq" Type="Int32" />
+          <Property Name="p_status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="p_prodid" />
+          </Key>
+          <Property Name="p_prodid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="p_prodname" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="p_classid" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="p_status" Type="Boolean" />
+          <Property Name="p_display" Type="Boolean" />
+          <Property Name="p_onshaffdateb" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="p_onshaffdaten" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="p_playseq" Type="Int32" />
+          <Property Name="p_packagetext" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="p_functiontext" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="p_price" Type="Decimal" Precision="30" Scale="6" />
+        </EntityType>
+        <EntityType Name="sys_code">
+          <Key>
+            <PropertyRef Name="s_name" />
+            <PropertyRef Name="s_code" />
+          </Key>
+          <Property Name="s_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="s_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="s_desc" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="s_memo" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="ProductTestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="prodclass" EntityType="Self.prodclass" />
+          <EntitySet Name="product" EntityType="Self.product" />
+          <EntitySet Name="sys_code" EntityType="Self.sys_code" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProductTestModelStoreContainer" CdmEntityContainer="ProductTestEntities">
+          <EntitySetMapping Name="prodclass">
+            <EntityTypeMapping TypeName="ProductTestModel.prodclass">
+              <MappingFragment StoreEntitySet="prodclass">
+                <ScalarProperty Name="p_classid" ColumnName="p_classid" />
+                <ScalarProperty Name="p_classname" ColumnName="p_classname" />
+                <ScalarProperty Name="p_display" ColumnName="p_display" />
+                <ScalarProperty Name="p_playseq" ColumnName="p_playseq" />
+                <ScalarProperty Name="p_status" ColumnName="p_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product">
+            <EntityTypeMapping TypeName="ProductTestModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="p_prodid" ColumnName="p_prodid" />
+                <ScalarProperty Name="p_prodname" ColumnName="p_prodname" />
+                <ScalarProperty Name="p_classid" ColumnName="p_classid" />
+                <ScalarProperty Name="p_status" ColumnName="p_status" />
+                <ScalarProperty Name="p_display" ColumnName="p_display" />
+                <ScalarProperty Name="p_onshaffdateb" ColumnName="p_onshaffdateb" />
+                <ScalarProperty Name="p_onshaffdaten" ColumnName="p_onshaffdaten" />
+                <ScalarProperty Name="p_playseq" ColumnName="p_playseq" />
+                <ScalarProperty Name="p_packagetext" ColumnName="p_packagetext" />
+                <ScalarProperty Name="p_functiontext" ColumnName="p_functiontext" />
+                <ScalarProperty Name="p_price" ColumnName="p_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_code">
+            <EntityTypeMapping TypeName="ProductTestModel.sys_code">
+              <MappingFragment StoreEntitySet="sys_code">
+                <ScalarProperty Name="s_name" ColumnName="s_name" />
+                <ScalarProperty Name="s_code" ColumnName="s_code" />
+                <ScalarProperty Name="s_desc" ColumnName="s_desc" />
+                <ScalarProperty Name="s_memo" ColumnName="s_memo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
